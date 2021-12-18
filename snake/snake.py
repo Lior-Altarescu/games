@@ -32,17 +32,18 @@ def show_score(score):
     screen.blit(scoretext, (10, 15)) 
 
 def main():
-    spawn_food      = True
-    player_score    = 0
-    RUNNING=True
-    pos_x   = Window_weidth/2
-    pos_y   = Window_height/2
-    pos_x_change    = 10
-    pos_y_change    = 0
-    player_direction = 'right'
-    snake_body=[(pos_x,pos_y)]
-    food_x= 0
-    food_y=0 
+    #Setting Variables
+    spawn_food          = True
+    player_score        = 0
+    RUNNING             = True
+    pos_x               = Window_weidth/2
+    pos_y               = Window_height/2
+    pos_x_change        = 10
+    pos_y_change        = 0
+    player_direction    = 'right'
+    snake_body          = [(pos_x,pos_y)]
+    food_x              = 0
+    food_y              = 0 
 
 
     clock = pygame.time.Clock()
