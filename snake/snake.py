@@ -8,7 +8,7 @@ pygame.init()
 Window_weidth=800
 Window_height=600
 
-WHITE=(255,255,255)
+WHITE=(190,190,190)
 BLACK=(0,0,0)
 RED=(164, 0, 0)
 
