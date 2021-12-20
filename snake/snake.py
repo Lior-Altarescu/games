@@ -20,7 +20,7 @@ screen=pygame.display.set_mode((Window_weidth, Window_height))
 pygame.display.set_caption("Snake - By Lior Altarescu")
 icon=pygame.image.load('{}/assets/anaconda.png'.format(os.path.dirname(os.path.abspath(__file__))))
 pygame.display.set_icon(icon)
-font = pygame.font.Font('freesansbold.ttf', 32)
+font = pygame.font.Font('{}/assets/Karla-VariableFont_wght.ttf'.format(os.path.dirname(os.path.abspath(__file__))), 32)
 
 def message(msg,color):
     screen.fill(WHITE)

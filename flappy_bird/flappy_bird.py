@@ -1,6 +1,5 @@
 import pygame
 import os
-import time
 import random
 
 from pygame.constants import GL_GREEN_SIZE
@@ -31,7 +30,7 @@ playerImg=pygame.image.load('{}/assets/flappy_bird_player.png'.format(os.path.di
 game_overImg=pygame.image.load('{}/assets/flappy_bird_game_over.png'.format(os.path.dirname(os.path.abspath(__file__))))
 pygame.display.set_icon(icon)
 
-font = pygame.font.Font('freesansbold.ttf', 32)
+font = pygame.font.Font('{}/assets/Karla-VariableFont_wght.ttf'.format(os.path.dirname(os.path.abspath(__file__))), 32)
 
 def draw_player(player_y):
     screen.blit(playerImg, (Window_weidth/2,player_y))
@@ -84,7 +83,9 @@ def main():
                     if event.key == pygame.K_c:
                         main()  
                     if event.key == pygame.K_q:
-                        pygame.quit()
+                        RUNNING = False
+                        GAME_OVER = False
+                        #pygame.quit()
 
         player_y+=15 
         draw_player(player_y)
@@ -107,7 +108,6 @@ def main():
             if obsticales[i][0] <= 0 :
                 remove_obsticales.append(i)
                 
-            print(player_y)
             if Window_weidth/2-5 <= obsticales[i][0] <= Window_weidth/2+5:
                 if player_y  > obsticales[i][1] + availble_y_blocks or player_y <  obsticales[i][1] - availble_y_blocks:
                     GAME_OVER=True
