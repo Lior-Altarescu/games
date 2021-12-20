@@ -4,7 +4,9 @@ A python made snake game . Fun for the whole family
 ![python snake game](/snake/assets/readme_snake_1.png "Game start")
 
 ### Installation  
-Inorder to run the game download the repo and install the requirment file and run the game .
+Inorder to run the game download the repo and install the requirment file and run the game or download the  [executable](https://github.com/Lior-Altarescu/games/releases/tag/snake-1.0)   ( Only for windows).
+
+
 ```python
 pip install -r snake\requirment.txt
 python3 snake\snake.py
