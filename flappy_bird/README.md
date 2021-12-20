@@ -18,7 +18,7 @@ python3 flappy_bird\snake.py
 
 ### How to win?  
 
-![Survive](https://giphy.com/gifs/mrw-case-bubbleguts-7zJivlhQurdLVTeeX6)
+![Survive](https://media.giphy.com/media/7zJivlhQurdLVTeeX6/giphy.gif)
 
 Just make sure you don't lose other wise you will see this screen 
 
