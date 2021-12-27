@@ -3,6 +3,8 @@
 
 1 Python snake [game](https://github.com/Lior-Altarescu/games/tree/main/snake/README.md)  
 2 Python flappy bird [game](https://github.com/Lior-Altarescu/games/tree/main/flapp_bird/README.md)
+2 Python Tic-Tac-Toe [game](https://github.com/Lior-Altarescu/games/tree/main/tictactoe/README.md)
+
 
 ## Requirments
 Please install python3.8 
