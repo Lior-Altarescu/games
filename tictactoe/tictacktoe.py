@@ -130,9 +130,9 @@ def draw_bord():
     for row in GAMEBOARD:
         pos_x=(Window_weidth/3)/2 - (xImg.get_width()/2)
         for column in row:
-            if column == 'o':
+            if column == HUMAN:
                 screen.blit(oImg,(pos_x,pos_y))
-            elif column == 'x':
+            elif column == AI:
                 screen.blit(xImg,(pos_x,pos_y))
             pos_x += Window_weidth/3
         pos_y+=(Window_height-TEXTBOX_Y)/3
