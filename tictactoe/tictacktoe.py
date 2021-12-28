@@ -5,12 +5,14 @@ import math
 import numpy
 import random
 
-
+# Initating py game - each  pygame needs it 
 pygame.init()
 
+# Windows variables
 Window_weidth=400
 Window_height=500
 
+# Game Variables
 FPS = 50
 BACKGROUND=(169,169,169)
 BLACK=(0,0,0)
@@ -23,17 +25,25 @@ CURRENT_TURN=HUMAN
 GAME_RESULT='INPLAY'
 GAMEBOARD=[[0,0,0],[0,0,0],[0,0,0]]
 
-
+# Sets the size of the screen
 screen=pygame.display.set_mode((Window_weidth, Window_height))
+
 pygame.display.set_caption("Tick Tac Toe - By Lior Altarescu")
+
+# Loads all pictures from assets folder to be used later
 icon=pygame.image.load('{}/assets/tic-tac-toe_icon.png'.format(os.path.dirname(os.path.abspath(__file__))))
 game_startImg=pygame.image.load('{}/assets/tic-tac-toe-startscreen.png'.format(os.path.dirname(os.path.abspath(__file__))))
 xImg=pygame.image.load('{}/assets/x.png'.format(os.path.dirname(os.path.abspath(__file__))))
 oImg=pygame.image.load('{}/assets/o.png'.format(os.path.dirname(os.path.abspath(__file__))))
+
 pygame.display.set_icon(icon)
 
+# Load font file
 font = pygame.font.Font('{}/assets/Karla-VariableFont_wght.ttf'.format(os.path.dirname(os.path.abspath(__file__))), 32)
 
+
+# * The inital program that runs. It displays game_startImg 
+# * until the screen is pressed and then it moves to the main function
 def game_start():
     #Variables
     INITRUNNING=True
@@ -56,11 +66,12 @@ def game_start():
 
     pygame.quit()
 
-
+# *Check on the board if there is 3 in a row 
+# @param board  tictactoe board recived
 def check_3_in_a_row(board):
     global CURRENT_TURN,GAME_RESULT
     
-    #check rows
+    # *Check if a human or ai has 3 in a row
     for row in board:
         if len(set(row)) == 1 and row[0] != 0:
             if row[0] == HUMAN:
@@ -68,7 +79,7 @@ def check_3_in_a_row(board):
             elif row[0] == AI:
                 return -1
             
-    #check columns
+    # *Check if a human or ai has 3 in a column
     transported_matrix=numpy.transpose(board)
     for row in transported_matrix:
         if len(set(row)) == 1 and row[0] != 0:
@@ -77,7 +88,7 @@ def check_3_in_a_row(board):
             elif row[0] == AI:
                 return -1
 
-    #check horizontal if won
+    # *Check if a human or ai has 3 in one of two diagonal 
     transported_matrix=numpy.fliplr(board)
     if len(set(numpy.array(board).diagonal())) == 1:
             if board[0][0] == HUMAN:
@@ -89,11 +100,12 @@ def check_3_in_a_row(board):
                 return 1
             elif transported_matrix[0][0] == AI:
                 return -1
-    
+    # *If all squares are full then there is a tie
     if not any(0 in square for square in board)  :
          return 0
                 
-
+# * Print the current turn . Wether it's the  player or the computer
+# * Print game final status : Player Won,lost or tie
 def display_game_status():
 
     if GAME_RESULT == 'INPLAY':
@@ -115,7 +127,7 @@ def display_game_status():
         playermsg = font.render('Click to restart', 1, BLACK)
         screen.blit(playermsg, ( Window_weidth/2-playermsg.get_width()/2,(Window_height-TEXTBOX_Y+BUFFER+playermsg.get_height())))
 
-    
+# * Draws the board and the player and computer positions
 def draw_bord():
     pos_x=Window_weidth/3
 
@@ -137,6 +149,12 @@ def draw_bord():
             pos_x += Window_weidth/3
         pos_y+=(Window_height-TEXTBOX_Y)/3
 
+
+# * Calculates the next best move the computer can do . 
+# *
+# * This function calls the minimax function which create 
+# * a binary tree of all the possible position and try to 
+# * caculate the best next step for the computer with the higest win rates.
 def next_best_move():
     BEST_SCORE=-math.inf
     BEST_MOVE=()
@@ -188,7 +206,7 @@ def minimax(board,isMaximizing):
         return BEST_SCORE
 
 
-
+# * the main function of the game 
 def main():
     #Variables
     RUNNING=True
@@ -204,7 +222,7 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
 
-                #player can't click on text box 
+                # * Detects the position of the mouse clicked in the board
                 if mouse_pos[1]<(Window_height-TEXTBOX_Y) and GAME_RESULT == 'INPLAY':
                     gameboard_pos=[math.floor(x/(Window_weidth/3)) for x in mouse_pos]
                     gameboard_pos.reverse()
@@ -215,6 +233,7 @@ def main():
                             CURRENT_TURN=AI
 
                 else:
+                    # * Game finised and initalises a new game
                     GAMEBOARD=[[0,0,0],[0,0,0],[0,0,0]]
                     GAME_RESULT = 'INPLAY'
                     CURRENT_TURN=HUMAN
